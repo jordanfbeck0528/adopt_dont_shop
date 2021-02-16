@@ -1,7 +1,14 @@
 class ApplicationsController < ApplicationController
   def show
-    @pets = Pet.search(params[:search]) if params[:search]
-    @application = Application.find(params[:id])
+    if params[:search]
+      @pets = Pet.search(params[:search])
+      @application = Application.find(params[:id])
+    elsif params[:pet_id]
+      @application = Application.find(params[:id])
+      @application.add_pet(params[:pet_id])
+    else
+      @application = Application.find(params[:id])
+    end
   end
 
   def new
@@ -22,7 +29,8 @@ class ApplicationsController < ApplicationController
 
   def update
     application = Application.find(params[:id])
-    application.update(params[:pet_id])
+    application.add_pet(params[:pet_id])
+    application.update(app_params)
     redirect_to "/applications/#{application.id}"
   end
 

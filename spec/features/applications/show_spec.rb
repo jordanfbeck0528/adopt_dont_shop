@@ -7,7 +7,7 @@ RSpec.describe 'Applications show page' do
     @application_1 = Application.create!(name:"Jordan Beck", street_address: "123 peanut street",
                                   city: "Denver", state: "CO", zip_code: 80209,
               description_of_applicant: "Nice person, dog lover, already owns a dog",
-                              pet_name: "Django", application_status: "In Progress")
+                               application_status: "In Progress")
   end
   describe 'As a visitor' do
     describe 'When I visit the applications show page' do
@@ -53,6 +53,13 @@ RSpec.describe 'Applications show page' do
       end
       it "adds pets to an application" do
         visit "/applications/#{@application_1.id}"
+        save_and_open_page
+
+        expect(page).to have_content("Please search for pet")
+
+        fill_in "search", :with => "Django"
+
+        click_button "Search Pets"
 
         expect(page).to have_button("Adopt this pet")
 
