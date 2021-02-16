@@ -28,3 +28,13 @@
       <%= button_to "Adopt this pet", "/applications/#{@application.id}", method: :patch, params: { pet_id: pet.id } %>
     <% end %>
   <% end %>
+
+  <% When application has at least 1 pet added,
+  then an option appears to submit the application, after
+  filling out an "Applicant Description" form %>
+  <% if person fills out the description form,
+  then clicks submit, save that to the form by
+  changing the applicant status to pending, then
+  redirecting to the application to the show view,
+  reflecting that change in the browser%>
+  <% end %>

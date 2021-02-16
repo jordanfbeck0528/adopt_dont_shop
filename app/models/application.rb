@@ -12,6 +12,7 @@ class Application < ApplicationRecord
 
   def add_pet(id)
     matching_pet = Pet.find_by_sql "select name,id from pets where(id = id)"
+    require "pry"; binding.pry
     pets << matching_pet.first
   end
 end

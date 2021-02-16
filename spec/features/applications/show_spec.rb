@@ -29,11 +29,6 @@ RSpec.describe 'Applications show page' do
 
         expect(page).to have_content("Applicant Description: #{@application_1.description_of_applicant}")
       end
-      # it 'displays application w/ name of all pets on this application' do
-      #   visit "/applications/#{@application_1.id}"
-      #
-      #   expect(page).to have_content("All pets applied for: #{@application_1.pet_name}")
-      # end
       it 'displays application w/ application status' do
         visit "/applications/#{@application_1.id}"
 
@@ -48,12 +43,10 @@ RSpec.describe 'Applications show page' do
         click_button "Search Pets"
 
         expect(current_path).to eq("/applications/#{@application_1.id}")
-
         expect(page).to have_content(@pet1.name)
       end
       it "adds pets to an application" do
         visit "/applications/#{@application_1.id}"
-        save_and_open_page
 
         expect(page).to have_content("Please search for pet")
 
@@ -66,8 +59,31 @@ RSpec.describe 'Applications show page' do
         click_button "Adopt this pet"
 
         expect(current_path).to eq("/applications/#{@application_1.id}")
-
         expect(page).to have_content("All pets applied for: #{@pet1.name}")
+        expect(page).to have_content("All pets applied for: #{@application_1.pet_name}")
+      end
+      it "can fill out applicant description and submit
+      application, changing application status to pending" do
+        visit "/applications/#{@application_1.id}"
+
+        fill_in "search", :with => "Django"
+
+        click_button "Search Pets"
+
+        click_button "Adopt this pet"
+
+        expect(current_path).to eq("/applications/#{@application_1.id}")
+
+        fill_in "Applicant Description", :with => "Dog lover, big backyard, lots of treats"
+
+        click_button "Submit Application"
+
+        expect(current_path).to eq("/applications/#{@application_1.id}")
+        expect(page).to have_content("Application Status: Pending")
+        expect(page).to have_content(@pet1.name)
+        expect(page).to have_content("All pets applied for: #{@application_1.pet_name}")
+        expect(page).not_to have_content("Add a pet to this application:")
+        expect(page).not_to have_content("Search for a pet")
       end
     end
   end
