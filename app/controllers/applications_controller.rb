@@ -12,25 +12,33 @@ class ApplicationsController < ApplicationController
   end
 
   def new
+    @application = Application.new
   end
 
   def create
-  @application = Application.new(app_params)
-  @application.update(application_status: "In Progress")
+    @application = Application.new(app_params)
+    @application.update(application_status: "In Progress")
 
     if @application.save
       flash[:success] = "Create Application performed successfully"
       redirect_to "/applications/#{@application.id}"
     else
       flash[:warning] = "Create New Application failed, Please complete all fields"
-      redirect_to :action => "new"
+      # flash.now[:error] = @applications.error.full_messages.to_sentence
+      # redirect_to :action => "new"
+      render :new
     end
   end
 
   def update
     application = Application.find(params[:id])
-    application.add_pet(params[:pet_id])
-    application.update(app_params)
+    # require "pry"; binding.pry
+    if params[:app]
+      application.update(description_of_applicant: params[:app], application_status: "Pending")
+    else
+      application.add_pet(params[:pet_id])
+      application.update(app_params)
+    end
     redirect_to "/applications/#{application.id}"
   end
 

@@ -6,22 +6,24 @@
   <p>City: <%= @application.city %></p>
   <p>State: <%= @application.state %></p>
   <p>Zip Code: <%= @application.zip_code %></p>
-  <p>Applicant Description: <%= @application.description_of_applicant %></p>
+
+    <p>Applicant Description: <%= @application.description_of_applicant %></p>
   <% if @application.pets.empty? %>
       <p>All pets applied for: Please search for pet</p>
     <% else %>
       <p>All pets applied for: <%=@application.pets.first.name %> </p>
   <% end %>
   <p>Application Status: <%= @application.application_status %></p>
-  <% if @application.application_status ="In Progress"%>
+  <% if @application.application_status == "In Progress"%>
     <h1>Search for a Pet</h1>
     <%= form_with(url: "/applications/#{@application.id}", method: "get", local: true) do |f| %>
-    <h5><%= f.label "Add a Pet to this Application: " %></h5>
-    <p><%= f.text_field :search, placeholder: "Enter Pets Name" %></p><br>
-    <p><%= f.submit "Search Pets" %></p>
+      <h5><%= f.label "Add a Pet to this Application: " %></h5>
+      <p><%= f.text_field :search, placeholder: "Enter Pets Name" %></p><br>
+      <p><%= f.submit "Search Pets" %></p>
   <% end %>
   </section>
   <% end %>
+
   <% if @pets %>
     <% @pets.each do |pet| %>
       <%= pet.name %>
@@ -29,12 +31,10 @@
     <% end %>
   <% end %>
 
-  <% When application has at least 1 pet added,
-  then an option appears to submit the application, after
-  filling out an "Applicant Description" form %>
-  <% if person fills out the description form,
-  then clicks submit, save that to the form by
-  changing the applicant status to pending, then
-  redirecting to the application to the show view,
-  reflecting that change in the browser%>
+  <% if @application.pets.count > 0 %>
+    <%= form_with(url: "/applications/#{@application.id}", method: "patch", local: true) do |f| %>
+      <h5><%= f.label "Applicant Description" %></h5>
+      <p><%= f.text_field :app, size: "70x5" %></p>
+      <p><%= f.submit "Add Description" %></p>
+    <% end %>
   <% end %>

@@ -72,9 +72,9 @@ RSpec.describe 'Pets index page' do
     fill_in "city", with:"San Jose"
     fill_in "state", with:"CA"
     fill_in "zip_code", with:"95123"
-    fill_in "description_of_applicant", with:"Fun loving, outdoorsy person, in need of friend"
+    # fill_in "description_of_applicant", with:"Fun loving, outdoorsy person, in need of friend"
     # fill_in "pet_name", with:"Rufus"
-    fill_in "application_status", with:"In Progress"
+    # fill_in "application_status", with:"In Progress"
 
     click_button "Create Pet"
 
@@ -83,7 +83,7 @@ RSpec.describe 'Pets index page' do
     expect(page).to have_content("San Jose")
     expect(page).to have_content("CA")
     expect(page).to have_content("95123")
-    expect(page).to have_content("Fun loving, outdoorsy person, in need of friend")
+    # expect(page).to have_content("Fun loving, outdoorsy person, in need of friend")
     # expect(page).to have_content("Rufus")
     expect(page).to have_content("In Progress")
   end
