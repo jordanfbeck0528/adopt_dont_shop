@@ -72,7 +72,7 @@ RSpec.describe 'Pets index page' do
     fill_in "city", with:"San Jose"
     fill_in "state", with:"CA"
     fill_in "zip_code", with:"95123"
-    fill_in "description_of_applicant", with:"Fun loving, outdoorsy person, in need of friend"
+    # fill_in "description_of_applicant", with:"Fun loving, outdoorsy person, in need of friend"
 
     click_button "Submit"
 
@@ -81,7 +81,7 @@ RSpec.describe 'Pets index page' do
     expect(page).to have_content("San Jose")
     expect(page).to have_content("CA")
     expect(page).to have_content("95123")
-    expect(page).to have_content("Fun loving, outdoorsy person, in need of friend")
+    # expect(page).to have_content("Fun loving, outdoorsy person, in need of friend")
     expect(page).to have_content("In Progress")
   end
   it 'wont create a new application if data is missing' do
@@ -91,11 +91,12 @@ RSpec.describe 'Pets index page' do
     fill_in "street_address", with:"123 funtown street"
     fill_in "city", with:"San Jose"
     fill_in "state", with:"CA"
-    fill_in "zip_code", with:"95123"
-    fill_in "description_of_applicant", with: nil
+    fill_in "zip_code", with:""
+    # fill_in "description_of_applicant", with: nil
 
     click_button "Submit"
-
-    expect(page).to have_content("Create New Application failed, Please complete all fields\nName Street address City State Zip code Description of applicant Application status")
+# save_and_open_page
+    # expect(page).to have_content("Create New Application failed, Please complete all fields\nName Street address City State Zip code Description of applicant Application status")
+    expect(page).to have_content("Create New Application failed, Please complete all fields")
   end
 end

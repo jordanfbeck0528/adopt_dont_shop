@@ -1,14 +1,15 @@
 class ApplicationsController < ApplicationController
   def show
-    # if params[:search]
+    if params[:search]
       @pets = Pet.search(params[:search])
+      # require "pry"; binding.pry
       @application = Application.find(params[:id])
     # elsif params[:pet_id]
     #   @application = Application.find(params[:id])
     #   @application.add_pet(params[:pet_id])
-    # else
-    #   @application = Application.find(params[:id])
-    # end
+    else
+      @application = Application.find(params[:id])
+    end
   end
 
   def new
