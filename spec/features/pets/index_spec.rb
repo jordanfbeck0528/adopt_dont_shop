@@ -67,24 +67,36 @@ RSpec.describe 'Pets index page' do
   it 'can create new application' do
     visit '/applications/new'
 
-    fill_in "name", with: "Calvin"
+    fill_in "name", with: "John"
     fill_in "street_address", with:"123 funtown street"
     fill_in "city", with:"San Jose"
     fill_in "state", with:"CA"
     fill_in "zip_code", with:"95123"
     # fill_in "description_of_applicant", with:"Fun loving, outdoorsy person, in need of friend"
-    # fill_in "pet_name", with:"Rufus"
-    # fill_in "application_status", with:"In Progress"
 
-    click_button "Create Pet"
+    click_button "Submit"
 
-    expect(page).to have_content("Calvin")
+    expect(page).to have_content("John")
     expect(page).to have_content("123 funtown street")
     expect(page).to have_content("San Jose")
     expect(page).to have_content("CA")
     expect(page).to have_content("95123")
     # expect(page).to have_content("Fun loving, outdoorsy person, in need of friend")
-    # expect(page).to have_content("Rufus")
     expect(page).to have_content("In Progress")
+  end
+  it 'wont create a new application if data is missing' do
+    visit '/applications/new'
+
+    fill_in "name", with: "John"
+    fill_in "street_address", with:"123 funtown street"
+    fill_in "city", with:"San Jose"
+    fill_in "state", with:"CA"
+    fill_in "zip_code", with:""
+    # fill_in "description_of_applicant", with: nil
+
+    click_button "Submit"
+# save_and_open_page
+    # expect(page).to have_content("Create New Application failed, Please complete all fields\nName Street address City State Zip code Description of applicant Application status")
+    expect(page).to have_content("Create New Application failed, Please complete all fields")
   end
 end
