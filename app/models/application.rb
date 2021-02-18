@@ -4,7 +4,7 @@ class Application < ApplicationRecord
                         :city,
                         :state,
                         :zip_code,
-                        # :description_of_applicant,
+                        :description_of_applicant,
                         :application_status
 
   has_many :application_pets

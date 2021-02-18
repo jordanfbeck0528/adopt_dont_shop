@@ -33,8 +33,8 @@
 
   <% if @application.pets.count > 0 %>
     <%= form_with(url: "/applications/#{@application.id}", method: "patch", local: true) do |f| %>
-      <h5><%= f.label "Applicant Description" %></h5>
+      <h5><%= f.label "Why would I make a good owner?" %></h5>
       <p><%= f.text_field :app, size: "70x5" %></p>
-      <p><%= f.submit "Add Description" %></p>
+      <p><%= f.submit "Submit Application" %></p>
     <% end %>
   <% end %>

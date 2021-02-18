@@ -62,8 +62,7 @@ RSpec.describe 'Applications show page' do
         expect(page).to have_content("All pets applied for: #{@pet1.name}")
         expect(page).to have_content("All pets applied for: #{@application_1.pet_name}")
       end
-      it "can fill out applicant description and submit
-      application, changing application status to pending" do
+      it "has a section to input why id make a good owner, to complete the application" do
         visit "/applications/#{@application_1.id}"
         fill_in "search", :with => "Django"
 
@@ -75,7 +74,7 @@ RSpec.describe 'Applications show page' do
 
         fill_in :app, with: "Dog lover, big backyard, lots of treats"
 
-        click_button "Add Description"
+        click_button "Submit Application"
 
         expect(current_path).to eq("/applications/#{@application_1.id}")
         expect(page).to have_content("Application Status: Pending")
