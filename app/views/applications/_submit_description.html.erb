@@ -1,0 +1,6 @@
+<h1>Applicant Description</h1>
+<%= form_with(url: "/applications/#{@application.id}", method: "patch", local: true) do |f| %>
+  <h5><%= f.label "Why would I make a good owner?" %></h5>
+  <p><%= f.text_field :app %></p>
+  <p><%= f.submit "Submit Application" %></p>
+<% end %>

@@ -27,4 +27,8 @@ class Application < ApplicationRecord
     # pets << matching_pet.first
     pets << matching_pet
   end
+
+  # def submit_applicant_description
+    # @application.pets.count > 0 && @application.application_status == "In Progress"
+  # end
 end

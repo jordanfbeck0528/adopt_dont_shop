@@ -57,7 +57,7 @@ RSpec.describe 'Applications show page' do
         click_button "Search Pets"
 
         expect(page).to have_button("Adopt this pet")
-save_and_open_page
+# save_and_open_page
         within("#pet-id-#{@pet1.id}") do
           click_button "Adopt this pet"
         end
