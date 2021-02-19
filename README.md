@@ -1,3 +1,5 @@
+<img width="1186" alt="Screen Shot 2021-02-18 at 7 05 23 PM" src="https://user-images.githubusercontent.com/68141454/108449078-1adad100-7220-11eb-8ea4-d1631fce219c.png">
+
 # Adopt Don't Shop
 
 In this project, students will build upon the code in this repo to create a Pet Adoption Platform. Users will be able to apply to adopt pets, and Admins will be able to approve or reject applications and see statistics for the Shelters, Pets, and Applications in the system.
