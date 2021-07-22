@@ -1,18 +1,19 @@
 <h2>Application</h2>
 
-<section id="application-<%=@application.id%>">
+<section id="application-<%= @application.id %>">
   <h3>Name: <%= @application.name %></h3>
   <p>Street Address: <%= @application.street_address %></p>
   <p>City: <%= @application.city %></p>
   <p>State: <%= @application.state %></p>
   <p>Zip Code: <%= @application.zip_code %></p>
 
-    <p>Applicant Description: <%= @application.description_of_applicant %></p>
-    <% if @application.pets.empty? %>
-      <p>All pets applied for: Please search for pet</p>
-    <% else %>
-      <p>All pets applied for: <%=@application.pets.first.name %> </p>
+  <p>Applicant Description: <%= @application.description_of_applicant %></p>
+  <% if @application.pets.empty? %>
+    <p> Please search for a pet, and add it </p>
+  <% else %>
+    <p>All pets applied for: <%=@application.pets.first.name %> </p>
   <% end %>
+
   <p>Application Status: <%= @application.application_status %></p>
   <% if @application.application_status == "In Progress"%>
     <%= render partial: "pet_search" %>

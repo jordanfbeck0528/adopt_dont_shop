@@ -49,8 +49,8 @@ RSpec.describe 'Applications show page' do
       end
       it "adds pets to an application" do
         visit "/applications/#{@application_1.id}"
-
-        expect(page).to have_content("Please search for pet")
+require "pry"; binding.pry
+        expect(page).to have_content("Please search for a pet, and add it")
 
         fill_in "search", :with => "Django"
 
@@ -69,7 +69,7 @@ RSpec.describe 'Applications show page' do
       it "adds Partial pets to an application" do
         visit "/applications/#{@application_1.id}"
 
-        expect(page).to have_content("Please search for pet")
+        expect(page).to have_content("Please search for a pet, and add it")
 
         fill_in "search", :with => "Django"
 
@@ -88,7 +88,7 @@ RSpec.describe 'Applications show page' do
       it "adds Case Insensitive pets to an application" do
         visit "/applications/#{@application_1.id}"
 
-        expect(page).to have_content("Please search for pet")
+        expect(page).to have_content("Please search for a pet, and add it")
 
         fill_in "search", :with => "Django"
 
